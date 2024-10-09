@@ -1,0 +1,189 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en, id"  > 
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Technical_Report
+    </title>
+    <link rel="stylesheet" href="{% static 'css/Technical_Report.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+  </head>
+  <body >
+
+    <div class="container">
+      <div class="row gutters">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+              <div class="card-body p-0">
+                <div><br></div>
+                {% comment %} {% for rrr in obj.Report_Product.all %} {% endcomment %}
+                <div class="invoice-container">
+                  <div class="invoice-header">
+                    <!-- Row start -->
+                    <div class="row gutters">
+                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                      </div>
+                    </div>
+                    <!-- Row end -->
+                    <!-- Row start -->
+                    
+                    <div class="row gutters">
+                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                        <a href="#" class="invoice-logo">
+                          <img src="/static/logo.png" data-holder-rendered="true" /><br>
+                        <u>Technical_Report</u>
+                        </a>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-6">
+                        <address class="text-right" style="font-weight: bold;font-size: 0.8rem;
+    color: #3e3e3f;
+    margin: 0;">
+                          <h5>Al-Tawheed Group</h5>
+                          1377 Aghkan Towers, Corniche El Nile, Cairo.<br>
+                          (+202) 22057310 (+20) 1103823700.<br>
+                        </address>
+                      </div>
+                    </div>
+                    
+                    <!-- Row end -->
+
+                    <!-- Row start -->
+                    <div class="row gutters">
+                      <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                        <div class="invoice-details">
+                          <address style="font-weight: bold;color:black;">
+                            Client_name :   {{obj.request.End_User}}<br>
+                            Company_Name :   {{obj.request.Vendor}}
+                          </address>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                        <div class="invoice-details">
+                          <div class="invoice-num" style="font-weight: bold;">
+                            <div>Request -- ALT{{obj.request}}</div>
+                            <div>Date : {{obj.request.received_date|date:'D-d M Y'}}</div>
+                          </div>
+                        </div>													
+                      </div>
+                    </div>
+                    <!-- Row end -->
+                  </div>
+                  <div class="invoice-body">
+                    <!-- Row start -->
+                    <div class="row gutters">
+                      <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="table-responsive">
+                          <table class="table custom-table m-0">
+                            <thead >
+                              <tr>
+                                <th style="border: 2;color: #373131;">Barcode</th>
+                                <th style="border: 2;color: #373131;">Description</th>
+                                <th style="border: 2;color: #373131;">Color</th>
+                                <th style="border: 2;color: #373131;">Serial_NO</th>
+                                <th style="border: 2;color: #373131;">REF_NO</th>
+                                <th style="border: 2;color: #373131;">Cost</th>
+
+                              </tr>
+                            </thead>
+                            <tbody>
+                              
+                              {% comment %} {% if print.action.name == "Reject" or print.action.name == "Repair"  %} {% endcomment %}
+                              <tr style="font-weight: 700px;">
+                                <td>
+                                  {{obj.product.barcode}}
+                                  
+                                </td>
+                                <td>{{obj.product.des}}</td>
+                                <td>{{obj.product.color}}</td>
+			        <td>{{obj.serial_out}}</td>
+                                {% for item in objects %}
+                                {% if item.serial_out == obj.serial_out and item.request == obj.request %}
+                                <td>{{item.ref}}</td>
+                                <td>{{item.cost}}</td>
+                                {% endif %}
+                                {% endfor %}
+                              </tr>
+                              <tr style="font-weight: bold;" dir="rtl">
+                                <td colspan="1" >
+                                  <p>
+                                    Client Complaint<br>
+                                  </p>
+                                </td>	
+                                <td colspan="6" >
+                                  <p>
+                                    {{obj.complain}}
+                                  </p>
+                                </td>		
+                              <tr style="font-weight: bold;">
+
+                                <td colspan="1" >
+                                  <p>
+                                    Test Result<br>
+                                  </p>
+                                </td>		
+                                <td colspan="6" >
+                                  <p>
+                                  {{obj.Report}}
+                                  </p>
+                                </td>	
+                               
+                              </tr>
+                              <tr style="font-weight: bold;">
+
+                                <td colspan="1" >
+                                  <p>
+                                    Recommendation Action<br>
+                                  </p>
+                                </td>		
+                                <td colspan="6" >
+                                  <p>
+                                    {{obj.advice}}
+                                  </p>
+                                </td>	
+                               
+                              </tr>
+                              <tr style="font-weight: bold;">
+
+                                <td colspan="1" >
+                                  <p>
+                                    Note<br>
+                                  </p>
+                                </td>		
+                                <td colspan="6" >
+                                  <p>
+                                    {{obj.note}}
+                                  </p>
+                                </td>	
+                               
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Row end -->
+                  </div>
+
+                  <div class="invoice-footer">
+                    Thanks from the technical support department of Al-Tawheed Group
+                  </div>
+                  <br><br><br><br><br>
+                  <div style="text-align: center;">
+                    <p>Technical Support &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Customer</p>
+                    <p>-------------------- &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp-------------</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  </body>
+</html>

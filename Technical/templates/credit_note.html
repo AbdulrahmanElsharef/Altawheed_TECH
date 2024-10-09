@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en, id"  > 
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Credit_Note
+    </title>
+    <link rel="stylesheet" href="{% static 'css/Technical_Report.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+  </head>
+  <body >
+    <div class="container">
+      <div class="row gutters">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+              <div class="card-body p-0">
+                <div><br></div>
+                <div class="invoice-container">
+                  <div class="invoice-header">
+                    <!-- Row start -->
+                    <div class="row gutters">
+                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                      </div>
+                    </div>
+                    <!-- Row end -->
+                    <!-- Row start -->
+                    <div class="row gutters">
+                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                        <a href="#" class="invoice-logo">
+                          <img src="/static/logo.png" data-holder-rendered="true" /><br>
+                          <u> Credit_Note</u>
+                        </a>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-6">
+                        <address class="text-right" style="font-weight: bold;font-size: 0.8rem;
+    color: #3e3e3f;
+    margin: 0;">
+                          <h5>Al-Tawheed Group</h5>
+                          1377 Aghkan Towers, Corniche El Nile, Cairo.<br>
+                          (+202) 22057310 (+20) 1103823700.<br>
+                        </address>
+                      </div>
+                    </div>
+                    <!-- Row end -->
+                    <!-- Row start -->
+                    <div class="row gutters">
+                      <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                        <div class="invoice-details">
+                          <address style="font-weight: bold;color:black;">
+                            Company_Name : {{obj.Vendor}}<br><br>
+                          </address>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                        <div class="invoice-details">
+                          <div class="invoice-num" style="font-weight: bold;">
+                            <div>Request -- ALT{{obj}}</div>
+                            <div>Date : {{obj.received_date}}</div>
+                          </div>
+                        </div>													
+                      </div>
+                    </div>
+                    <!-- Row end -->
+                  </div>
+                  <div class="invoice-body">
+                    <!-- Row start -->
+                    <div class="row gutters">
+                      <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="table-responsive">
+                          <table class="table custom-table m-0">
+                            <thead >
+                              <tr >
+                                <th class="text-left" style="font-weight: bold;border: 2;color: #373131;" >Barcode</th>
+                                <th class="text-left" style="font-weight: bold;border: 2;color: #373131;">Item Name</th>
+                                <th class="text-left" style="font-weight: bold;border: 2;color: #373131;">Color</th>
+                                <th class="text-left" style="font-weight: bold;border: 2;color: #373131;">Serial_NO</th>
+                                <th class="text-left" style="font-weight: bold;border: 2;color: #373131;">REF_NO</th>
+				<th class="text-left" style="font-weight: bold;border: 2;color: #373131;">Delivery_Date</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for print in obj.request_Action_Detail.all %}
+                              {% if print.action.name == "Credit_Note"  %}
+                              <tr style="font-weight: bold;">
+                                <td>
+                                  {{print.product.barcode}}
+                                  
+                                </td>
+                                <td>{{print.product.des}}</td>
+                                <td>{{print.product.color}}</td>
+                                <td>{{print.serial_out}}</td>
+                                <td>{{print.ref}}</td>
+                                <td>{{print.delivery_date}}</td>
+
+                              </tr>
+                              {% endif %}
+                              {% endfor %}             
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Row end -->
+                  </div>
+                  <div class="invoice-footer" style="text-align: right;">
+                    <br>
+                    <b><p> ...الساده الاعزاء تحية طيبة وبعد</p>
+                    <p>بعد فحص المنتج تاكدنا من وجود عيب صناعه بالمنتج ولعدم توافر مخزون من هذا المنتج سيتم عمل استرداد لقيمة الفاتورة</p></b>
+                  </div>
+                  <div class="invoice-footer">
+                    Thanks from the technical support department of Al-Tawheed Group
+                  </div>
+                  <br><br><br><br><br>
+                  <div style="text-align: center;">
+                    <p>Technical Support &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Received by</p>
+                    <p>-------------------- &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp-------------</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  </body>
+</html>

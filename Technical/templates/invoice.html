@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en, id"  > 
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Invoice
+    </title>
+    <link rel="stylesheet" href="{% static 'css/invoice.css' %}">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+      $('#printInvoice').click(function(){
+        Popup($('.invoice')[0].outerHTML);
+        function Popup(data) 
+        {
+            window.print();
+            return true;
+        }
+    });
+    </script>
+  </head>
+  <body >
+    <div id="invoice">
+
+      <div class="invoice overflow-auto">
+          <div style="min-width: 600px">
+              <header>
+                  <div class="row">
+                      <div class="col">
+                          <a target="_blank" href="https://altawheedgroup.com/" >
+                              <img src="/static/logo.png" data-holder-rendered="true" />
+                              </a>
+                      </div>
+                      <div class="col company-details">
+                          <h1 class="name" style="color:#3989c6;">
+                              ALTAWHEED
+
+                          </h1>
+                          <div><h6>1377 Aghkan Towers, Corniche El Nile, Cairo</h6></div>
+			<div><h6>35-Smouha Cooperatives, Alexandria </h6></div> 
+                          <div><h6>(+202) 22057310 (+20) 1103823700</div></h5>
+                          <div><h6>product.support@altawheed.com.eg</div></h5>
+                      </div>
+                  </div>
+              </header>
+              <main>
+                  <div class="row contacts">
+                      <div class="col invoice-to">
+                        {% if obj.End_User %}
+                          <h5>Customer Name : {{obj.End_User}}</h5>
+                        {% else %}
+                        <h5>Customer Name : ---</h5>
+                        {% endif %}
+                        {% if obj.End_User.phone %}
+                          <h5>Customer Phone : {{obj.End_User.phone}} </h5>
+                        {% else %}
+                        <h5>Customer Phone : ---</h5>
+                        {% endif %}
+                          <h5>Vendor Account : {{obj.Vendor}}</h5>
+                      </div>
+                      <div class="col invoice-details">
+			{% if obj.branch == "Alex" %}
+                          <h3 class="invoice-id"><u>Request : ALT/Alex-{{obj}}</u></h3>
+			{% elif obj.branch == "Asyut" %}
+			<h3 class="invoice-id"><u>Request : ALT/Asyut-{{obj}}</u></h3>
+			{% else %}
+                          <h3 class="invoice-id"><u>Request : ALT/Cairo-{{obj}}</u></h3>
+			{% endif %}
+                          <h5 class="date">Received Date :{{obj.received_date|date:'D-d M Y' }} </h5>
+                      </div>
+                  </div>
+                  <table >
+                      <thead>
+                          <tr>
+                              <th class="text-left" ><H6>No</H6></th>
+                              <th class="text-left"><H6>DESCRIPTION</H6></th>
+                              <th class="text-left"><h6>Barcode</h6></th>
+                              <th class="text-left"><h6>Serail</h6></th>
+                              <th class="text-left"><h6>purchase_date</h6></th>
+                              <th class="text-left"><h6>Failuer Detail</h6></th>
+                              <th class="text-left"><h6>Note</h6></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        {% for fail in obj.request_Failer_Detail.all %}
+                          <tr style="font-size:small;">
+                            <td class="text-left"><h6>{{ forloop.counter }}</td></h6>
+                            <td class="text-left"><h6>{{fail.product.des}}</td></h6>
+                              <td class="text-left"><h6>{{fail.product.barcode}}</h6></td>
+                              <td class="text-left"><h6>{{fail.serial_in}}</h6></td>
+                              <td class="text-left"><h6>{{fail.purchase_date|date:'d M Y'}}</h6></td>
+                              <td class="text-left"><h6>{{fail.detail}}</h6></td>
+                              <td class="text-left"><h6>{{fail.note}}</h6></td>
+                            </tr>
+                          {% endfor %}
+
+                      </tbody>
+
+                  </table>
+                  <div dir="rtl" style="font-size:larger;">
+                    <ol style="text-align: right;">
+                      <h4>ملحوظات :</h4>
+                      <li >
+                        تسليم المنتجات خلال مده اقصاها 5 أيام عمل من تاريخ التسليم
+
+                      </li>
+                      <li>
+                         Brand JBL يتم تسليم المنتجات الخاصة به خلال مدة اقصاها 10ايام عمل من تاريخ الاستلام  
+                      </li>
+                      <li>
+                        قطع الغيار المستبدله حق للشركه ولا يحق للعميل المطالبه بها
+
+                      </li>
+                      <li>
+                        يسقط حق العميل في المطالبه بالمنتج بعد 90 يوما من تاريخ الاخطار باتمام أعمال الاصلاح
+                      </li>
+                    </ol>
+                      <!-- <br> -->
+                      <ol style="text-align: right;">
+                      <h4>يسقط الضمان في الحالات التاليه
+                       :</h4>
+
+                      <li>
+                        فتح المنتج خارج مركز الصيانه
+
+                      </li>
+                      <li>
+                        وجود سوائل او زياده في التيار الكهربائي عن المسموح به
+                      </li>
+
+                    </ol>
+                  </div>
+                  
+                  <div class="row">
+                    <img style="width: 100%;
+                    bottom:-100px;
+                    left:0%;" src="/static/new.png" data-holder-rendered="true" />
+                  </div>
+          </div>
+          <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
+          
+      </div>
+  </div>
+  </body>
+</html>

@@ -30,7 +30,7 @@ JAZZMIN_SETTINGS = {
         {"model": "auth.User"},
 
         # App with dropdown menu to all its models pages (Permissions checked against models)
-        {"app": "Technical"},
+        {"app": "Technical"},{"app": "DELVERY"},{"app": "APP_DATA"},
         
         {"name": "Print", "url": "http://10.0.0.184:8000/print",
             "new_window": True},
@@ -61,7 +61,7 @@ JAZZMIN_SETTINGS = {
     # Whether to display the side menu
     "show_sidebar": True,
     # Whether to aut expand the menu
-    "navigation_expanded": True,
+    "navigation_expanded": False,
     # Custom icons for side menu apps/models See https://fontawesome.com/icons?d=gallery&m=free&v=5.0.0,5.0.1,5.0.10,5.0.11,5.0.12,5.0.13,5.0.2,5.0.3,5.0.4,5.0.5,5.0.6,5.0.7,5.0.8,5.0.9,5.1.0,5.1.1,5.2.0,5.3.0,5.3.1,5.4.0,5.4.1,5.4.2,5.13.0,5.12.0,5.11.2,5.11.1,5.10.0,5.9.0,5.8.2,5.8.1,5.7.2,5.7.1,5.7.0,5.6.3,5.5.0,5.4.2
     # for the full list of 5.13.0 free icon classes
     "icons": {
@@ -91,7 +91,7 @@ JAZZMIN_SETTINGS = {
     ###############
     # Change view #
     ###############
-    "changeform_format": "horizontal_tabs",
+    "changeform_format": "carousel",
     # override change forms on a per modeladmin basis
     "changeform_format_overrides": {
         "auth.user": "collapsible",

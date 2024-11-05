@@ -32,19 +32,34 @@
                     <div class="row gutters">
                       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                         <a href="#" class="invoice-logo">
-                          <img src="/static/logo.png" data-holder-rendered="true" /><br>
+                          {% comment %} <img src="/static/logo.png" data-holder-rendered="true" /><br> {% endcomment %}
                           <u>Replacement Report</u>
                         </a>
                       </div>
+                      {% if obj.note == "ALTAWHEED_LLC" %}
                       <div class="col-lg-6 col-md-6 col-sm-6">
-                        <address class="text-right" style="font-weight: bold;font-size: 0.8rem;
-    color: #3e3e3f;
-    margin: 0;">
+                        <address class="text-right" style="font-weight: bold;font-size: 0.8rem;color: #3e3e3f;margin: 0;">
+                          <h5>Al-Tawheed for Supplies, Import and Export LLC</h5>
+                          40/2 Sub-Service Center - Industrial District - Third Settlemen<br>
+                        </address>
+                      </div>
+                      {% elif obj.note == "SMART_GATE" %}
+                      <div class="col-lg-6 col-md-6 col-sm-6">
+                        <address class="text-right" style="font-weight: bold;font-size: 0.8rem;color: #3e3e3f;margin: 0;">
+                          <h5>TE Gate Smart</h5>
+                          Plot 161, Small Industries Area, Workshops, Katameya Road, Third Settlement<br>
+                        </address>
+                      </div>
+                      {% else %}
+                       <div class="col-lg-6 col-md-6 col-sm-6">
+                        <address class="text-right" style="font-weight: bold;font-size: 0.8rem;color: #3e3e3f;margin: 0;">
                           <h5>Al-Tawheed Group</h5>
                           1377 Aghkan Towers, Corniche El Nile, Cairo.<br>
                           (+202) 22057310 (+20) 1103823700.<br>
                         </address>
                       </div>
+                      {% endif %}
+                    </div>
                     </div>
                     <!-- Row end -->
                     <!-- Row start -->

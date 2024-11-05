@@ -30,21 +30,36 @@
           <div style="min-width: 600px">
               <header>
                   <div class="row">
-                      <div class="col">
+                      {% comment %} <div class="col">
                           <a target="_blank" href="https://altawheedgroup.com/" >
                               <img src="/static/logo.png" data-holder-rendered="true" />
                               </a>
-                      </div>
+                      </div> {% endcomment %}
+                      
                       <div class="col company-details">
+                        {% if obj.note == "ALTAWHEED_LLC" %}
                           <h1 class="name" style="color:#3989c6;">
-                              ALTAWHEED
+                            Al-Tawheed for Supplies, Import and Export LLC
 
                           </h1>
-                          <div><h6>1377 Aghkan Towers, Corniche El Nile, Cairo</h6></div>
-			<div><h6>35-Smouha Cooperatives, Alexandria </h6></div> 
+                          <div><h6>40/2 Sub-Service Center - Industrial District - Third Settlement</h6></div>
+                        {% elif obj.note == "SMART_GATE" %}
+                        <h1 class="name" style="color:#3989c6;">
+                          TE Gate Smart
+
+                        </h1>
+                        <div><h6>Plot 161, Small Industries Area, Workshops, Katameya Road, Third Settlement</h6></div>
+                        {% else %}
+                        <h1 class="name" style="color:#3989c6;">
+                          Al-Tawheed Group
+
+                        </h1>
+			                <div><h6>1377 Aghkan Towers, Corniche El Nile, Cairo
+                      </h6></div> 
                           <div><h6>(+202) 22057310 (+20) 1103823700</div></h5>
-                          <div><h6>product.support@altawheed.com.eg</div></h5>
+                          <div><h6>product.support@altawheed.com.eg</div></h5> 
                       </div>
+                      {% endif %}
                   </div>
               </header>
               <main>

@@ -19,6 +19,7 @@ class End_User(models.Model):
     name=models.CharField(_("End_User"), max_length=50)
     phone=models.CharField(_("Phone"), max_length=25)
     email=models.EmailField(_("Email"), max_length=50,null=True,blank=True)
+    
     note=models.CharField(_("User_Note"), max_length=50,default='No Note')
     
     def __str__(self):
@@ -76,6 +77,8 @@ class Request(models.Model):
     End_User = models.ForeignKey(End_User, on_delete=models.SET_NULL,null=True,blank=True,verbose_name=_('Client_Name'),related_name='Request_client')
     Vendor = models.ForeignKey(Vendor, on_delete=models.PROTECT,verbose_name=_('Vendor'),related_name='Request_Vendor')
     received_date=models.DateField(_("Received_Date"),default=timezone.now)
+    created=models.DateTimeField(("Created"), auto_now=True,)
+    updated=models.DateTimeField(("updated"), auto_now_add=True,)
     note=models.CharField(_("Note"), max_length=50,default='No_Note')
     def __str__(self):
         return f"REQ0{str(self.id)}"
@@ -97,6 +100,8 @@ class Failer_Detail(models.Model)  :
     issue=models.ForeignKey(Issue, on_delete=models.PROTECT,verbose_name='Issue',related_name='Issue_name')
     detail=models.CharField(_("Detail"),max_length=300,default='Write Issue Detail')
     ref=models.CharField(_("REF_NUM"), max_length=25,default='No_Ref')
+    created=models.DateTimeField(("Created"), auto_now=True,)
+    updated=models.DateTimeField(("updated"), auto_now_add=True,)
     note=models.CharField(_("Note"), max_length=50,default='No_Note')
     
     def __str__(self):
@@ -127,6 +132,8 @@ class Action_Detail(models.Model)  :
     cost=models.IntegerField(_("Cost"),default=0)
     last_serial=models.CharField(_("last_S.N"), max_length=50,default='No Serail')
     ref=models.CharField(_("REF_NUM"), max_length=25,default='No_Ref')
+    created=models.DateTimeField(("Created"), auto_now=True,)
+    updated=models.DateTimeField(("updated"), auto_now_add=True,)
     note=models.CharField(_("Note"), max_length=50,default='No Note')
     def __str__(self):
         return str(self.request)

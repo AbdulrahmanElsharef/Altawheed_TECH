@@ -32,9 +32,9 @@ JAZZMIN_SETTINGS = {
         # App with dropdown menu to all its models pages (Permissions checked against models)
         {"app": "Technical"},{"app": "DELVERY"},{"app": "APP_DATA"},
         
-        {"name": "Print", "url": "http://10.0.0.184:8000/print",
+        {"name": "Print", "url": "http://127.0.0.1:8000/print",
             "new_window": True},
-        {"name": "Report", "url": "http://10.0.0.184:8000/report",
+        {"name": "Report", "url": "http://127.0.0.1:8000/report",
             "new_window": True},
         {"name": "ALtawheed", "url": "https://altawheedgroup.com/",
             "new_window": True},

@@ -52,7 +52,7 @@ class IssueTabularInline(admin.TabularInline):
 @admin.register(Request)
 class RequestAdmin(admin.ModelAdmin):
     inlines = [IssueTabularInline,ActionTabularInline]  
-    list_display =['__str__','status',"branch",'client','End_User','Vendor','received_date','note']
+    list_display =['__str__','status',"branch",'client','End_User','Vendor','received_date','note',"created","updated"]
     list_filter=['id','status',"branch",'client','End_User','End_User__phone','Vendor__name','received_date',]
     search_fields=('note',)
     
@@ -60,14 +60,14 @@ class RequestAdmin(admin.ModelAdmin):
 
 @admin.register(Failer_Detail)
 class Failer_DetailAdmin(admin.ModelAdmin):
-    list_display =['__str__','product','serial_in','active','invoice','purchase_date','issue','User','company']
+    list_display =['__str__','product','serial_in','active','invoice','purchase_date','issue','User','company',"created","updated"]
     list_filter=["request__id",'product__barcode','serial_in','active','purchase_date','issue__name','request__End_User','request__Vendor__name',"ref"]
     
     
     
 @admin.register(Action_Detail)
 class Action_DetailAdmin(admin.ModelAdmin):
-    list_display =['__str__','product','serial_out',"last_serial",'action','technician','delivery_date','cost',"ref",'User','company',]
+    list_display =['__str__','product','serial_out',"last_serial",'action','technician','delivery_date','cost',"ref",'User','company',"created","updated"]
     list_filter=["request__id",'product__barcode','serial_out',"last_serial",'action__name','technician__name','delivery_date','request__End_User','request__Vendor__name',"ref"]
 
 

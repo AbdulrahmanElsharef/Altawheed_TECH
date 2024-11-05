@@ -18,16 +18,18 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from Technical import views
+from Technical.views import *
+from DELVERY.views import car_list
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('print/', views.print,name='print'),
-    path('print/invoice/<int:id>/', views.invoice,name='invoice'),
-    path('print/credit_note/<int:id>/', views.credit_note,name='credit_note'),
-    path('print/replacement/<int:id>/', views.replacement,name='replacement'),
-    path('report/', views.report,name='report'),
-    path('report/<int:id>/', views.technical,name='technical'),
+    path('print/', print,name='print'),
+    path('print/invoice/<int:id>/', invoice,name='invoice'),
+    path('print/credit_note/<int:id>/', credit_note,name='credit_note'),
+    path('print/replacement/<int:id>/', replacement,name='replacement'),
+    path('report/', report,name='report'),
+    path('report/<int:id>/', technical,name='technical'),
+    path('cars/', car_list,name='car_list'),
 
 ]
 
